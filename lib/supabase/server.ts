@@ -1,66 +1,28 @@
-import { createServerClient as createSupabaseServerClient } from "@supabase/ssr"
-import { ENV } from "@/config/env"
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 
-export async function createSupabaseServerClientInternal() {
-  // Lazily obtain the cookies store to avoid importing next/headers at
-  // module initialization time which would mark this module as a Server
-  // Component.
-  let cookieStore: any = { getAll: () => [], setAll: () => {} }
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const _nextHeaders = require("next/headers")
-    if (_nextHeaders && typeof _nextHeaders.cookies === "function") {
-      cookieStore = _nextHeaders.cookies()
-    }
-  } catch (err) {
-    // Not in a Next server component environment — keep no-op store.
-  }
+export async function createClient() {
+  const cookieStore = await cookies();
 
-  return createSupabaseServerClient(
-    ENV.NEXT_PUBLIC_SUPABASE_URL || ENV.SUPABASE_URL || "",
-    ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SERVICE_ROLE_KEY || "",
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll ? cookieStore.getAll() : []
+          return cookieStore.getAll();
         },
-        setAll(cookiesToSet: any[]) {
+        setAll(cookiesToSet) {
           try {
-            if (cookieStore && typeof cookieStore.set === "function") {
-              cookiesToSet.forEach(({ name, value, options }) => {
-                cookieStore.set(name, value, options)
-              })
-            }
-          } catch (error) {
-            // Ignore errors when setting cookies outside server components.
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options),
+            );
+          } catch {
+            // The "setAll" method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing user sessions.
           }
         },
       },
     },
-  )
+  );
 }
-
-export async function createServiceClient() {
-  return createSupabaseServerClient(
-    ENV.NEXT_PUBLIC_SUPABASE_URL || ENV.SUPABASE_URL || "",
-    ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SERVICE_ROLE_KEY || "",
-    {
-      cookies: {
-        getAll() {
-          return []
-        },
-        setAll() {
-          // No-op for service client
-        },
-      },
-    },
-  )
-}
-
-// Export the required createServerClient function
-export const createServerClient = createSupabaseServerClientInternal
-
-// Legacy exports for backward compatibility
-export const createClient = createSupabaseServerClientInternal
-
-export { createSupabaseServerClient }

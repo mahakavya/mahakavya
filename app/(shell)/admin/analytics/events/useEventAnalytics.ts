@@ -1,1 +1,0 @@
-export { useEventAnalytics } from "../useEventAnalytics"

@@ -1,95 +1,44 @@
-import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ClientProviders } from "@/app/ClientProviders"
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] })
+const _geist = Geist({ subsets: ["latin"] });
+const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Mahakavya - Sacred Digital Heritage Platform",
-    template: "%s | Mahakavya",
-  },
-  description:
-    "A comprehensive digital platform celebrating Indian cultural heritage through AI, blockchain, and community engagement.",
-  keywords: ["Indian culture", "heritage", "spiritual", "community", "AI", "blockchain"],
-  authors: [{ name: "Mahakavya Team" }],
-  creator: "Mahakavya",
-  publisher: "Mahakavya",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://mahakavya.vercel.app"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "/",
-    title: "Mahakavya - Sacred Digital Heritage Platform",
-    description:
-      "A comprehensive digital platform celebrating Indian cultural heritage through AI, blockchain, and community engagement.",
-    siteName: "Mahakavya",
-    images: [
+  title: 'Mahakavya - Share Your Epic Stories',
+  description: 'Mahakavya: A beautiful social platform to share your moments and connect with others',
+  generator: 'v0.app',
+  icons: {
+    icon: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Mahakavya - Sacred Digital Heritage Platform",
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
       },
     ],
+    apple: '/apple-icon.png',
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mahakavya - Sacred Digital Heritage Platform",
-    description:
-      "A comprehensive digital platform celebrating Indian cultural heritage through AI, blockchain, and community engagement.",
-    images: ["/og-image.jpg"],
-    creator: "@mahakavya",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  manifest: "/manifest.json",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-    generator: 'v0.app'
-}
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f59e0b" },
-    { media: "(prefers-color-scheme: dark)", color: "#d97706" },
-  ],
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-  <ClientProviders>{children}</ClientProviders>
+    <html lang="en">
+      <body className={`font-sans antialiased`}>
+        {children}
+        <Analytics />
       </body>
     </html>
   )
