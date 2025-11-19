@@ -1,0 +1,574 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Sacred Heritage Theme */
+  .heritage-theme {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--heritage-ivory)) 0%,
+      hsl(var(--heritage-sandstone)) 30%,
+      hsl(var(--heritage-gold) / 0.1) 70%,
+      hsl(var(--sacred-orange) / 0.05) 100%
+    );
+    min-height: 100vh;
+  }
+
+  .sacred-pattern {
+    background-image: radial-gradient(circle at 20% 20%, hsl(var(--heritage-gold) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(var(--sacred-orange) / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, hsl(var(--heritage-copper) / 0.06) 0%, transparent 50%);
+  }
+
+  .heritage-pattern {
+    background-image: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 140, 0, 0.1) 0%, transparent 50%);
+  }
+
+  .mandala-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .om-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ea580c' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .heritage-border {
+    border-image: linear-gradient(
+        45deg,
+        hsl(var(--heritage-gold)),
+        hsl(var(--sacred-orange)),
+        hsl(var(--heritage-copper)),
+        hsl(var(--heritage-bronze))
+      )
+      1;
+  }
+
+  .sacred-text {
+    background: linear-gradient(135deg, #92400e, #d97706, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .heritage-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--heritage-gold-dark)),
+      hsl(var(--heritage-bronze)),
+      hsl(var(--heritage-maroon))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .divine-glow {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .ai-glow {
+    box-shadow: 0 0 20px hsl(var(--ai-electric) / 0.3), 0 0 40px hsl(var(--ai-neon) / 0.2), 0 0 60px
+      hsl(var(--ai-cyber) / 0.1);
+  }
+
+  .sacred-card {
+    @apply bg-white/80 backdrop-blur-sm border border-amber-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .sacred-card:hover {
+    border-color: hsl(var(--heritage-gold) / 0.7);
+    box-shadow: 0 12px 40px hsl(var(--heritage-gold) / 0.25), 0 0 0 1px hsl(var(--heritage-gold) / 0.2);
+    transform: translateY(-2px);
+  }
+
+  .heritage-card {
+    background: linear-gradient(135deg, hsl(var(--heritage-ivory) / 0.9) 0%, hsl(var(--heritage-sandstone) / 0.8) 100%);
+    border: 2px solid hsl(var(--heritage-gold) / 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .heritage-card:hover {
+    border-color: hsl(var(--heritage-gold) / 0.6);
+    box-shadow: 0 8px 32px hsl(var(--heritage-gold) / 0.2), 0 0 0 1px hsl(var(--heritage-gold) / 0.1);
+  }
+
+  /* Sacred Typography */
+  .font-heritage {
+    font-family: "Times New Roman", "Georgia", serif;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+  .font-devanagari {
+    font-family: "Noto Sans Devanagari", "Arial Unicode MS", sans-serif;
+  }
+
+  .font-sacred {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: 700;
+  }
+
+  /* Sacred Animations */
+  @keyframes sacred-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes heritage-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--heritage-gold) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--heritage-gold) / 0.6);
+    }
+  }
+
+  @keyframes divine-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes ai-circuit {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes sacred-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(234, 88, 12, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(234, 88, 12, 0.6);
+    }
+  }
+
+  .animate-sacred-pulse {
+    animation: sacred-pulse 3s ease-in-out infinite;
+  }
+
+  .heritage-pulse {
+    animation: heritage-pulse 3s ease-in-out infinite;
+  }
+
+  .divine-rotate {
+    animation: divine-rotate 4s linear infinite;
+  }
+
+  .ai-circuit {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--ai-electric) / 0.1),
+      hsl(var(--ai-neon) / 0.2),
+      hsl(var(--ai-cyber) / 0.1)
+    );
+    background-size: 200% 200%;
+    animation: ai-circuit 4s ease-in-out infinite;
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .sacred-glow {
+    animation: sacred-glow 3s ease-in-out infinite;
+  }
+
+  /* Custom animations */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  @keyframes float-reverse {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(20px) rotate(-180deg);
+    }
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(90deg);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-very-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes gradient-text {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes bounce-gentle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 8s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .animate-spin-very-slow {
+    animation: spin-very-slow 30s linear infinite;
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-gradient-text {
+    background-size: 200% 200%;
+    animation: gradient-text 4s ease infinite;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.6s ease-out forwards;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #f59e0b, #ea580c);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ea580c, #dc2626);
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: rgba(245, 158, 11, 0.3);
+    color: #ea580c;
+  }
+
+  /* Focus styles */
+  .focus-visible\:ring-2:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #f59e0b;
+  }
+}
+
+/* Sacred Component Styles */
+.sacred-button {
+  @apply bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300;
+  @apply rounded-xl;
+}
+
+.heritage-button {
+  @apply bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600;
+  @apply hover:from-amber-500 hover:via-orange-600 hover:to-amber-700;
+  @apply text-white font-medium;
+  @apply border-2 border-amber-300 hover:border-amber-400;
+  @apply shadow-lg hover:shadow-xl;
+  @apply transition-all duration-300;
+}
+
+.ai-button {
+  @apply bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-600;
+  @apply hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700;
+  @apply text-white font-medium;
+  @apply border-2 border-blue-300 hover:border-purple-400;
+  @apply shadow-lg hover:shadow-xl;
+  @apply transition-all duration-300;
+}
+
+.heritage-ai-button {
+  @apply bg-gradient-to-r from-amber-500 via-purple-600 to-blue-600;
+  @apply hover:from-amber-600 hover:via-purple-700 hover:to-blue-700;
+  @apply text-white font-bold;
+  @apply border-2 border-amber-300 hover:border-purple-400;
+  @apply shadow-lg hover:shadow-xl;
+  @apply transition-all duration-300;
+  @apply rounded-xl;
+}
+
+.sacred-ai-button {
+  @apply bg-gradient-to-r from-orange-500 via-red-500 to-purple-600;
+  @apply hover:from-orange-600 hover:via-red-600 hover:to-purple-700;
+  @apply text-white font-bold;
+  @apply border-2 border-orange-300 hover:border-red-400;
+  @apply shadow-lg hover:shadow-xl;
+  @apply transition-all duration-300;
+  @apply rounded-xl;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heritage-pattern {
+    background-size: 40px 40px;
+  }
+
+  .mandala-bg {
+    background-size: 60px 60px;
+  }
+
+  .om-pattern {
+    background-size: 80px 80px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .heritage-theme {
+    background: white;
+  }
+
+  .animate-sacred-pulse,
+  .heritage-pulse,
+  .divine-rotate {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .heritage-card,
+  .sacred-card {
+    background: white;
+    border: 3px solid black;
+  }
+
+  .heritage-text,
+  .sacred-text {
+    background: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-sacred-pulse,
+  .heritage-pulse,
+  .divine-rotate,
+  .ai-circuit,
+  .card-hover {
+    animation: none;
+    transition: none;
+  }
+}
